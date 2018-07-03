@@ -330,7 +330,7 @@ end
   >
   > 각자 나온 주소에서 keyboard를 뒤에 더 입력했을 때 json이 return 되면 일단 정상적으로 베포 된 것.
   
-  ### 5. [친구 추가](https://github.com/plusfriend/auto_reply#53-%EC%B9%9C%EA%B5%AC-%EC%B6%94%EA%B0%80%EC%B0%A8%EB%8B%A8-%EC%95%8C%EB%A6%BC-api)
+### 5. [친구 추가](https://github.com/plusfriend/auto_reply#53-%EC%B9%9C%EA%B5%AC-%EC%B6%94%EA%B0%80%EC%B0%A8%EB%8B%A8-%EC%95%8C%EB%A6%BC-api)
 
 - model 생성
 

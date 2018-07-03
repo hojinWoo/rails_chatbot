@@ -19,6 +19,15 @@ class KakaoController < ApplicationController
   def friend_delete
     #find methods는 id로 값을 찾지만 find_by는 column으로 찾을 수 있음
     User.find_by(user_key: params[:user_key]).destroy
+    render nothing: true
+  end
+  
+  #[채팅방에서 나가기] 할 때마다 chat_room의 count가 올라가게 하기
+  def chat_room
+    user = User.find_by(user_key: params[:user_key])
+    user.plus #User.rb에서 만든 methods
+    user.save
+    render nothing: true
   end
   
   def message
