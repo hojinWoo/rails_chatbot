@@ -1,4 +1,7 @@
 class KakaoController < ApplicationController
+  # helper 사용
+  require 'parse'
+  
   def keyboard
     @keyboard = {
         :type => "buttons",
@@ -38,15 +41,11 @@ class KakaoController < ApplicationController
     elsif @user_msg == "로또"
       @text = (1..45).to_a.sample(6).sort.to_s
     elsif @user_msg == "고양이"
-      @url = "http://thecatapi.com/api/images/get?format=xml&type=jpg"
-      @cat_xml = RestClient.get(@url)
+      #self가 아니라면 instance화를 시켜야 한다
+      #@animal = Parse::Animal.new
+      #cat_url = @animal.cat
       
-      # http://www.nokogiri.org/tutorials/parsing_an_html_xml_document.html
-      @cat_doc = Nokogiri::XML(@cat_xml)
-      
-      # http://www.nokogiri.org/tutorials/searching_a_xml_html_document.html
-      @cat_url = @cat_doc.xpath("//url").text
-      @photo = @cat_url
+      @cat_url = Parse::Animal.cat
       
     end
     

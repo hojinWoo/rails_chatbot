@@ -338,6 +338,12 @@ end
   $ rails g model user user_key:string chat_room:integer
   $ rake db:migrate
   ```
+- `Routes.rb`
+
+  ```ruby
+  post '/friend' => 'kakao#friend_add'
+  delete '/friend/:user_key' => 'kakao#friend_delete'
+  ```
 
 - model 수정
 
