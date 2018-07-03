@@ -97,7 +97,7 @@ end
 
 - 카카오톡에서 플러스친구 이름/아이디 로 검색을 해서 친구추가 되면서 키보드 확인 가능
 
-
+  
 
 ### 3. 기능을 추가해 봅시다.
 
@@ -329,3 +329,41 @@ end
   > heroku 주소 확인 https://railsbot87.herokuapp.com/keyboard
   >
   > 각자 나온 주소에서 keyboard를 뒤에 더 입력했을 때 json이 return 되면 일단 정상적으로 베포 된 것.
+  
+  ### 5. [친구 추가](https://github.com/plusfriend/auto_reply#53-%EC%B9%9C%EA%B5%AC-%EC%B6%94%EA%B0%80%EC%B0%A8%EB%8B%A8-%EC%95%8C%EB%A6%BC-api)
+
+- model 생성
+
+  ```bash
+  $ rails g model user user_key:string chat_room:integer
+  $ rake db:migrate
+  ```
+
+- model 수정
+
+  ```ruby
+  #app/models/user.rb
+  class User < ActiveRecord::Base
+      def plus
+         self.chat_room += 1 
+      end
+  end
+  ```
+
+- controller 수정
+
+  ```ruby
+  # app/controllers/kakao_controller.rb
+  ...
+    def friend_add
+      #친구 추가시 User 생성
+      User.create(user_key: params[:user_key], chat_room: 0)
+      render nothing: true #카카오에서 200만 응답 받는다고 하니까 자체적으로 보낼 것은 없음
+    end
+    
+    def friend_delete
+      #find methods는 id로 값을 찾지만 find_by는 column으로 찾을 수 있음
+      User.find_by(user_key: params[:user_key]).destroy
+    end
+  ...
+  ```

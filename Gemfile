@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.4'
 
+gem 'rails_db'
 gem 'rest-client'
 gem 'nokogiri'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
