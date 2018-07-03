@@ -5,11 +5,9 @@ class KakaoController < ApplicationController
   def keyboard
     @keyboard = {
         :type => "buttons",
-        :buttons => ["메뉴", "로또", "고양이"]
+        :buttons => ["메뉴", "로또", "고양이", "영화 추천", "신갈병원"]
     }
-    
     render json: @keyboard
-    
   end
   
   #https://github.com/plusfriend/auto_reply#53-%EC%B9%9C%EA%B5%AC-%EC%B6%94%EA%B0%80%EC%B0%A8%EB%8B%A8-%EC%95%8C%EB%A6%BC-api 참고
@@ -46,7 +44,13 @@ class KakaoController < ApplicationController
       #cat_url = @animal.cat
       
       @cat_url = Parse::Animal.cat
+    elsif @user_msg == "영화 추천"
+      movie = Parse::Movie.new
+      @text = movie.naver
       
+    elsif @user_msg == "신갈병원" 
+      @text = Parse::Hospital.name
+        
     end
     
     
@@ -64,7 +68,7 @@ class KakaoController < ApplicationController
     
      @return_keyboard = {
         :type => "buttons",
-        :buttons => ["메뉴", "로또", "고양이"]
+        :buttons => ["메뉴", "로또", "고양이", "영화 추천", "신갈병원"]
     }
     
     if @user_msg == "고양이"
